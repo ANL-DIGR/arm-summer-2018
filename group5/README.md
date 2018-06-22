@@ -1,2 +1,2 @@
-Group 6: Boundary layer dynamics Virendra Ghate and Pavlos Kollias
-------------------------------------------------------------------
+Group 5: Cloud fraction and liquid water content Susanne Crewell and Ulrich Loehnert
+------------------------------------------------------------------------------------
