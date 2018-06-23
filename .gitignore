@@ -102,3 +102,8 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+.DS_Store
+
+group3/virtual_machine/.vagrant
+group3/virtual_machine/software
