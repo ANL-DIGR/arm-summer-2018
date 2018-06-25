@@ -1,7 +1,6 @@
 # #!/bin/bash
 
-mkdir -p /vagrant/software
-ln -s /vagrant/software ~/software
+mkdir -p ~/software
 
 mkdir -p /vagrant/scripts
 ln -s /vagrant/scripts ~/scripts
@@ -61,12 +60,12 @@ nohup /home/vagrant/miniconda/bin/jupyter notebook  --ip 0.0.0.0 --no-browser >>
 
 
 #now python 2.7
-conda create -q --name py27 python=2.7
+conda create -y -q --name py27 python=2.7
 conda activate py27
 conda config --add channels conda-forge 
 # Pamtra1 hates apreantly conda's libgfortran... so use pip!
 pip install -q numpy==1.12.1 scipy 
-pip install -q ipykernel matplotlib ipython xarray numba netcdf4
+pip install -q ipykernel matplotlib ipython xarray numba netcdf4 
 python -m ipykernel install --user
 
 
@@ -90,24 +89,38 @@ rm -rf build
 python setup.py install
 pytest -q
 
+# #libradtran
+# conda activate py27
+# cd ~/software
+# wget -q http://www.libradtran.org/download/libRadtran-2.0.2.tar.gz
+# #its not a gzip file despite the ending!!!
+# tar -xf libradtran-2.0.2.tar.gz
+# cd ~/software/libradtran-2.0.2
+# #to make up for the hard link in the tar archive
+# cp src_py/uvspec_lex.l src/uvspec_lex.l
+# export F77=gfortran
+# make clean
+# ./configure
+# make
+
 #libradtran
 conda activate py27
 cd ~/software
-wget -q http://www.libradtran.org/download/libRadtran-2.0.2.tar.gz
+wget -q http://www.libradtran.org/download/history/libRadtran-1.7.tar.gz
 #its not a gzip file despite the ending!!!
-tar -xf libradtran-2.0.2.tar.gz
-cd ~/software/libradtran-2.0.2
-#to make up for the hard link in the tar archive
-cp src_py/uvspec_lex.l src/uvspec_lex.l
-export F77=gfortran
-make clean
+tar -xf libRadtran-1.7.tar.gz
+cp libRadtran-1.7/src/uvspec_lex.l libRadtran-1.7/python/uvspec_lex.l
+cd ~/software/libRadtran-1.7
+# export F77=gfortran-4.7
 ./configure
 make
+make check
+sudo make install
+
 
 # clean up
 cd ~
-rm -f Anaconda3-5.2.0-Linux-x86_64.sh
 rm -f Miniconda3-latest-Linux-x86_64.sh
-rm -f software/libRadtran-2.0.2.tar.gz
+rm -f libRadtran-1.7.tar.gz
 
 

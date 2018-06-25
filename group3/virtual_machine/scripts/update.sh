@@ -3,14 +3,14 @@
 
 # pamtra
 conda activate py27
-cd ~/libs/pamtra
+cd ~/software/pamtra
 git pull
 make clean
 make pyinstall
 
 # pamtra2
 conda activate base
-cd ~/libs/pamtra2
+cd ~/software/pamtra2
 git pull
 rm -rf build
 python setup.py install
