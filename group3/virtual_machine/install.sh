@@ -1,5 +1,6 @@
 # #!/bin/bash
 
+mkdir -p ~/software
 
 mkdir -p /vagrant/shared
 ln -s /vagrant ~/shared
@@ -44,8 +45,9 @@ export PYTHONPATH=$PYTHONPATH:$HOME/lib/python
 # # python 3.6
 conda activate base
 conda config --add channels conda-forge 
-# Pamtra1 hates apreantly conda's libgfortran... so use pip!
-pip install -q cython numpy scipy xarray dask numba jupyter matplotlib ipython pytest netcdf4 arm_pyart
+# Pamtra1 hates apparently conda's libgfortran... so use pip!
+pip install -q cython numpy scipy xarray dask numba jupyter matplotlib ipython pytest netcdf4 
+pip install -q arm_pyart
 
 #launch jupyter on startup
 mkdir -p /home/vagrant/.jupyter
@@ -62,7 +64,7 @@ nohup /home/vagrant/miniconda/bin/jupyter notebook  --ip 0.0.0.0 --no-browser >>
 conda create -y -q --name py27 python=2.7
 conda activate py27
 conda config --add channels conda-forge 
-# Pamtra1 hates apreantly conda's libgfortran... so use pip!
+# Pamtra1 hates apparently conda's libgfortran... so use pip!
 pip install -q numpy==1.12.1 scipy 
 pip install -q ipykernel matplotlib ipython xarray numba netcdf4 
 python -m ipykernel install --user
