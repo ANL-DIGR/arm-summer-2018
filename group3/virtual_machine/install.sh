@@ -1,9 +1,8 @@
 # #!/bin/bash
 
-mkdir -p ~/software
 
-mkdir -p /vagrant/scripts
-ln -s /vagrant/scripts ~/scripts
+mkdir -p /vagrant/shared
+ln -s /vagrant ~/shared
 
 
 # # Sytem tools!
@@ -46,7 +45,7 @@ export PYTHONPATH=$PYTHONPATH:$HOME/lib/python
 conda activate base
 conda config --add channels conda-forge 
 # Pamtra1 hates apreantly conda's libgfortran... so use pip!
-pip install -q cython numpy scipy xarray dask numba jupyter matplotlib ipython pytest netcdf4
+pip install -q cython numpy scipy xarray dask numba jupyter matplotlib ipython pytest netcdf4 arm_pyart
 
 #launch jupyter on startup
 mkdir -p /home/vagrant/.jupyter
@@ -97,7 +96,7 @@ pytest -q
 # tar -xf libradtran-2.0.2.tar.gz
 # cd ~/software/libradtran-2.0.2
 # #to make up for the hard link in the tar archive
-# cp src_py/uvspec_lex.l src/uvspec_lex.l
+# # cp src_py/uvspec_lex.l src/uvspec_lex.l
 # export F77=gfortran
 # make clean
 # ./configure
@@ -109,18 +108,26 @@ cd ~/software
 wget -q http://www.libradtran.org/download/history/libRadtran-1.7.tar.gz
 #its not a gzip file despite the ending!!!
 tar -xf libRadtran-1.7.tar.gz
-cp libRadtran-1.7/src/uvspec_lex.l libRadtran-1.7/python/uvspec_lex.l
+# cp libRadtran-1.7/src/uvspec_lex.l libRadtran-1.7/python/uvspec_lex.l
 cd ~/software/libRadtran-1.7
+#apply patch to allow more heights
+patch -p1 < /vagrant/libradtran.patch 
 # export F77=gfortran-4.7
 ./configure
-make
+make    
 make check
 sudo make install
+echo "export LIBRADTRAN_DATA_FILES=/usr/local/share/libRadtran/data/"  >> ~/.bashrc
+export LIBRADTRAN_DATA_FILES=/usr/local/share/libRadtran/data/
 
+
+# nano src/fl_radparams.inc 
+# (base) vagrant@vagrant-ubuntu-trusty-64:~/software/libRadtran-1.7$ nano src/fl_radparams.cinc
+# 105 -> 350 nvx
 
 # clean up
 cd ~
 rm -f Miniconda3-latest-Linux-x86_64.sh
-rm -f libRadtran-1.7.tar.gz
+rm -f ~/softwarelibRadtran-1.7.tar.gz
 
 

@@ -1,0 +1,21 @@
+diff -au libRadtran-1.7-MOD/src/fl_radparams.cinc libRadtran-1.7/src/fl_radparams.cinc
+--- libRadtran-1.7-MOD/src/fl_radparams.cinc	2018-06-28 19:56:55.614411019 +0000
++++ libRadtran-1.7/src/fl_radparams.cinc	2011-12-02 11:07:18.000000000 +0000
+@@ -1,5 +1,5 @@
+ 
+-  int nvx = 105;
++  int nvx = 350;
+   int nv1x = nvx+1;
+ 
+   int mbx = 18;
+diff -au libRadtran-1.7-MOD/src/fl_radparams.inc libRadtran-1.7/src/fl_radparams.inc
+--- libRadtran-1.7-MOD/src/fl_radparams.inc	2018-06-28 19:56:43.070410795 +0000
++++ libRadtran-1.7/src/fl_radparams.inc	2011-12-02 11:07:17.000000000 +0000
+@@ -1,6 +1,6 @@
+ C *** MODULE radparams ***
+       integer nvx
+-      parameter (nvx = 105)
++      parameter (nvx = 350)
+       integer nv1x
+       parameter (nv1x = nvx + 1)
+       integer ndfsx, mdfsx

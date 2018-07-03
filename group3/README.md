@@ -42,8 +42,8 @@ again. To reset everything, do
     vagrant halt
 
 When the virtual machine is running, you should be able to access a jupyter notebook
-at http://localhost:8880.  The password is `jupyter`. Both examples in scripts should work
-and make a plot. Jupyter notebook is a python envionment, but can be used
+at http://localhost:8880.  The password is `jupyter`. Both examples in shared/examples
+should work and produce a plot. Jupyter notebook is a python envionment, but can be used
 with other languages, too. More information at http://jupyter.org.
 
 
