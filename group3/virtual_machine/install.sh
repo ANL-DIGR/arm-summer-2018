@@ -9,7 +9,7 @@ chmod +x ~/shared/update.sh
 
 # # Sytem tools!
 sudo apt-get update -y 
-sudo apt-get install -y -qq tree git gcc gfortran liblapack-dev libfftw3-dev  libnetcdff5 libnetcdf-dev netcdf-bin gsl-bin libgsl0-dev libgsl0ldbl
+sudo apt-get install -y -qq tree git gcc gfortran liblapack-dev libfftw3-dev  libnetcdff5 libnetcdf-dev netcdf-bin gsl-bin libgsl0-dev libgsl0ldbl lftp
 
 
 # guest additions update
@@ -49,6 +49,9 @@ conda config --add channels conda-forge
 # Pamtra1 hates apparently conda's libgfortran... so use pip!
 pip install -q cython numpy scipy xarray dask numba jupyter matplotlib ipython pytest netcdf4 
 pip install -q arm_pyart
+
+pip install -q jupyter_contrib_nbextensions
+jupyter contrib nbextension install --user
 
 #launch jupyter on startup
 mkdir -p /home/vagrant/.jupyter
@@ -124,9 +127,10 @@ echo "export LIBRADTRAN_DATA_FILES=/usr/local/share/libRadtran/data/"  >> ~/.bas
 export LIBRADTRAN_DATA_FILES=/usr/local/share/libRadtran/data/
 
 
-# nano src/fl_radparams.inc 
-# (base) vagrant@vagrant-ubuntu-trusty-64:~/software/libRadtran-1.7$ nano src/fl_radparams.cinc
-# 105 -> 350 nvx
+#download data
+cd ~/shared/data
+lftp -c 'open ftp://ftp.cdc.noaa.gov/Public/mmaahn/arm-summer-school/ && mirror && exit'
+
 
 # clean up
 cd ~
