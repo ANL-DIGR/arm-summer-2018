@@ -1,15 +1,23 @@
 # #!/bin/bash
+set -e
 
+echo '############################################################'
+echo pamtra1
+echo '############################################################'
 
 # pamtra
-conda activate py27
+source activate py27
 cd ~/software/pamtra
 git pull
 make clean
 make pyinstall
 
+echo '############################################################'
+echo pamtra2
+echo '############################################################'
+
 # pamtra2
-conda activate base
+source activate base
 cd ~/software/pamtra2
 git pull
 rm -rf build

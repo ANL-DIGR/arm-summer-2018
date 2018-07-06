@@ -3,6 +3,7 @@
 
 mkdir -p /vagrant/shared
 ln -s /vagrant ~/shared
+chmod +x ~/shared/update.sh
 
 
 # # Sytem tools!
