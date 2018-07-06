@@ -98,8 +98,7 @@ pytest -q
 # conda activate py27
 # cd ~/software
 # wget -q http://www.libradtran.org/download/libRadtran-2.0.2.tar.gz
-# #its not a gzip file despite the ending!!!
-# tar -xf libradtran-2.0.2.tar.gz
+# tar -xzf libradtran-2.0.2.tar.gz
 # cd ~/software/libradtran-2.0.2
 # #to make up for the hard link in the tar archive
 # # cp src_py/uvspec_lex.l src/uvspec_lex.l
@@ -112,8 +111,7 @@ pytest -q
 conda activate py27
 cd ~/software
 wget -q http://www.libradtran.org/download/history/libRadtran-1.7.tar.gz
-#its not a gzip file despite the ending!!!
-tar -xf libRadtran-1.7.tar.gz
+tar -xzf libRadtran-1.7.tar.gz
 # cp libRadtran-1.7/src/uvspec_lex.l libRadtran-1.7/python/uvspec_lex.l
 cd ~/software/libRadtran-1.7
 #apply patch to allow more heights

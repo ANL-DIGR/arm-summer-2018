@@ -12,19 +12,28 @@ For version, management, make sure you have git installed:
 
 * git https://git-scm.com/downloads
 
-Then, clone this git repository to get the configuration. E.g., in your terminal, do 
+Then, clone this git repository to get the configuration for running the virtual 
+machine. I.e., in your terminal, do 
 
     git clone https://github.com/ANL-DIGR/arm-summer-2018
 
-Change the directory to group3/virtual_machine (on linux and 
+in case this repository gets updated (that will very likely happen just before
+the summer school starts), do
+
+    git pull
+
+in order to get all updates. 
+
+Change the directory to group3/virtual_machine in the terminal (on linux and 
 mac os `cd group3/virtual_machine`) and type 
 
     vagrant up
 
 This command will configure the virtual machine based on the information provided
 in `Vagrantfile`. It will download a lot of data, so don't do that with a bad 
-internet connection and make sure you have 2-3 GB space on your hard disk.
-Installation will take a while depending on network speed, be patient. 
+internet connection and make sure you have ~ 6 GB space on your hard disk.
+Installation will also download some data not available in the ARM archive and 
+will take a while, be patient. 
 
 When the machine is running, you can connect to it with 
 
@@ -46,7 +55,7 @@ Note that the `shared` folder in the virtual machine's home directory links to
 the `virtual_machine` of the host system. I.e. you can use that directory for file exchange and for editing the scripts/files with you favorite editor. 
 
 When the virtual machine is running, you should be able to access a jupyter notebook
-at http://localhost:8880.  The password is `jupyter`. Both examples in shared/examples
+at http://localhost:8880.  The password is `jupyter`. All examples in shared/examples
 should work and produce a plot. Jupyter notebook is a python envionment, but can be 
 used with other languages, too. More information at http://jupyter.org.
 
