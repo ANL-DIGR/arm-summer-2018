@@ -1,6 +1,8 @@
 Group 3: High latitudes cloud systems Manfred Wendisch and Maximilian Maahn
 ---------------------------------------------------------------------------
 
+These instructions are for Group 3 only.
+
 To make distribution of the software easier, we created a virtual machine image with
 all required software. You have to install the following software in order to 
 run the virtual machine on your computer:
@@ -17,7 +19,7 @@ machine. I.e., in your terminal, do
 
     git clone https://github.com/ANL-DIGR/arm-summer-2018
 
-in case this repository gets updated (that will very likely happen just before
+in order to download the repository to the current folder. In case this repository gets updated (that will very likely happen just before
 the summer school starts), do
 
     git pull
@@ -31,7 +33,7 @@ mac os `cd group3/virtual_machine`) and type
 
 This command will configure the virtual machine based on the information provided
 in `Vagrantfile`. It will download a lot of data, so don't do that with a bad 
-internet connection and make sure you have ~ 8 GB space on your hard disk.
+internet connection and make sure you have ~ 9 GB space on your hard disk.
 Installation will also download some data not available in the ARM archive and 
 will take a while, be patient. 
 
@@ -39,7 +41,7 @@ When the machine is running, you can connect to it with
 
     vagrant ssh
 
-and have terminal access. When you are done, do 
+in order to have terminal access. When you are done, do 
 
     vagrant halt
 
@@ -47,9 +49,9 @@ to turn the virtual machine off. You can start with
 
     vagrant up
 
-again. To reset everything, do 
+again. To delete the virtual machine and its containing data, do 
 
-    vagrant halt
+    vagrant destroy
 
 Note that the `shared` folder in the virtual machine's home directory links to 
 the `virtual_machine` of the host system. I.e. you can use that directory for file exchange and for editing files with you favorite editor. 
@@ -69,9 +71,9 @@ If you miss any of your favorite python packages, do
 
     conda install missing_module_name
 
-Make sure that the correct python version is selected. 
+Make sure that the correct python version is selected with `conda activate `. 
 
 The `update.sh` script in the shared folder can be used to update the pamtra model
-and the data provided on the FTP server if necessary.
+and the data provided on the FTP server if they get updated.
 
 
