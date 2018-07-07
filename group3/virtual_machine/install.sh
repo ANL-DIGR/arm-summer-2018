@@ -1,8 +1,8 @@
 # #!/bin/bash
 
 mkdir -p ~/software
+mkdir -p /vagrant/data
 
-mkdir -p /vagrant/shared
 ln -s /vagrant ~/shared
 chmod +x ~/shared/update.sh
 
@@ -50,9 +50,6 @@ conda config --add channels conda-forge
 pip install -q cython numpy scipy xarray dask numba jupyter matplotlib ipython pytest netcdf4 
 pip install -q arm_pyart
 
-pip install -q jupyter_contrib_nbextensions
-jupyter contrib nbextension install --user
-
 #launch jupyter on startup
 mkdir -p /home/vagrant/.jupyter
 (crontab -l ; echo "@reboot cd /home/vagrant; source ~/.bashrc;  /home/vagrant/miniconda/bin/jupyter notebook  --ip 0.0.0.0 --no-browser >> jupyter.log")| crontab -
@@ -61,6 +58,10 @@ echo '{
     "password": "sha1:b269d96dff97:82c6b6c3ba8438a203a2d635b0c6d53b38f51ae9"
   }
 }' >> /home/vagrant/.jupyter/jupyter_notebook_config.json
+
+pip install -q jupyter_contrib_nbextensions
+jupyter contrib nbextension install --user
+
 nohup /home/vagrant/miniconda/bin/jupyter notebook  --ip 0.0.0.0 --no-browser >> jupyter.log 2>&1 &
 
 
@@ -124,10 +125,10 @@ sudo make install
 echo "export LIBRADTRAN_DATA_FILES=/usr/local/share/libRadtran/data/"  >> ~/.bashrc
 export LIBRADTRAN_DATA_FILES=/usr/local/share/libRadtran/data/
 
-
+echo 'DOWNLOAD DATA... THIS TAKES VERY LONG!'
 #download data
 cd ~/shared/data
-lftp -c 'open ftp://ftp.cdc.noaa.gov/Public/mmaahn/arm-summer-school/ && mirror && exit'
+lftp -v -c 'open ftp://ftp.cdc.noaa.gov/Public/mmaahn/arm-summer-school/ && mirror && exit'
 
 
 # clean up

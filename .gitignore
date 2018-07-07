@@ -108,3 +108,4 @@ venv.bak/
 group3/virtual_machine/.vagrant
 group3/virtual_machine/data
 group3/virtual_machine/radiation/randomseed
+group3/virtual_machine/examples/randomseed
