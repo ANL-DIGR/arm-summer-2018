@@ -112,6 +112,8 @@ pytest -q
 conda activate py27
 cd ~/software
 wget -q http://www.libradtran.org/download/history/libRadtran-1.7.tar.gz
+# sometime it is compressed, sometimes not... strange! So try both
+tar -xf libRadtran-1.7.tar.gz
 tar -xzf libRadtran-1.7.tar.gz
 # cp libRadtran-1.7/src/uvspec_lex.l libRadtran-1.7/python/uvspec_lex.l
 cd ~/software/libRadtran-1.7
@@ -126,7 +128,8 @@ echo "export LIBRADTRAN_DATA_FILES=/usr/local/share/libRadtran/data/"  >> ~/.bas
 export LIBRADTRAN_DATA_FILES=/usr/local/share/libRadtran/data/
 
 echo 'DOWNLOAD DATA... THIS TAKES VERY LONG!'
-#download data
+echo 'check the arm-summer-2018/group3/virtual_machine/data folder to see the progress!'
+#download DATA
 cd ~/shared/data
 lftp -v -c 'open ftp://ftp.cdc.noaa.gov/Public/mmaahn/arm-summer-school/ && mirror && exit'
 
@@ -134,6 +137,6 @@ lftp -v -c 'open ftp://ftp.cdc.noaa.gov/Public/mmaahn/arm-summer-school/ && mirr
 # clean up
 cd ~
 rm -f Miniconda3-latest-Linux-x86_64.sh
-rm -f ~/softwarelibRadtran-1.7.tar.gz
-
+rm -f ~/software/libRadtran-1.7.tar.gz
+rm -f ~/software/test_pamtra.png
 
