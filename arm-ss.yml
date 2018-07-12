@@ -19,3 +19,4 @@ dependencies:
   - boto
   - boto3
   - metpy
+  - pydsd
